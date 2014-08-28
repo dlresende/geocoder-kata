@@ -11,7 +11,7 @@ public class AddressNormalizerTest {
     public void should_uppercase_town() {
         AddressNormalizer normalizer = new AddressNormalizer(FRANCE, new PostalCodeResolver(FRANCE));
 
-        Address normalized = normalizer.normalize(new Address(177, "avenue", "Henri Barbusse", "92700", "Colombes"));
+        NormalizedAddress normalized = normalizer.normalize(new Address(177, "avenue", "Henri Barbusse", "92700", "Colombes"));
 
         assertThat(normalized).town("COLOMBES");
     }
@@ -20,7 +20,7 @@ public class AddressNormalizerTest {
     public void should_append_postal_code() {
         AddressNormalizer normalizer = new AddressNormalizer(FRANCE, new PostalCodeResolver(FRANCE));
 
-        Address normalized = normalizer.normalize(new Address(156, "boulevard", "Haussmann", null, "PARIS"));
+        NormalizedAddress normalized = normalizer.normalize(new Address(156, "boulevard", "Haussmann", null, "PARIS"));
 
         assertThat(normalized).postalCode("75008");
     }

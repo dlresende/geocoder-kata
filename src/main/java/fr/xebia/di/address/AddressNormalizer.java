@@ -18,12 +18,12 @@ public class AddressNormalizer {
         this.postalCodeResolver = postalCodeResolver;
     }
 
-    public Address normalize(Address address) {
+    public NormalizedAddress normalize(Address address) {
         String postalCode = address.postalCode;
         if (address.postalCode == null) {
             postalCode = postalCodeResolver.resolve(address.town);
         }
 
-        return new Address(address.number, address.type, address.streetName, postalCode, address.town.toUpperCase(locale));
+        return new NormalizedAddress(address.number, address.type, address.streetName, postalCode, address.town.toUpperCase(locale));
     }
 }
