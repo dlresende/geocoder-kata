@@ -3,6 +3,8 @@ package fr.xebia.di.test;
 import fr.xebia.di.address.Address;
 import org.assertj.core.api.AbstractAssert;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AddressAssert extends AbstractAssert<AddressAssert, Address> {
@@ -25,7 +27,7 @@ public class AddressAssert extends AbstractAssert<AddressAssert, Address> {
         return this;
     }
 
-    public AddressAssert postalCode(String expectedPostalCode) {
+    public AddressAssert postalCode(Optional<String> expectedPostalCode) {
         assertThat(actual.postalCode).isEqualTo(expectedPostalCode);
         return this;
     }

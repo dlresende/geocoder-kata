@@ -2,6 +2,8 @@ package fr.xebia.di.address;
 
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static fr.xebia.di.test.DiAssertions.assertThat;
 import static java.util.Locale.FRANCE;
 
@@ -15,7 +17,7 @@ public class AddressParserTest {
         assertThat(address).number(177)
                 .type("avenue")
                 .streetName("Henri Barbusse")
-                .postalCode("92700")
+                .postalCode(Optional.of("92700"))
                 .town("COLOMBES");
     }
 }

@@ -1,6 +1,7 @@
 package fr.xebia.di.address;
 
 import java.util.Locale;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +24,7 @@ public class AddressParser {
         return new Address(parseInt(matcher.group("number")),
                 matcher.group("type"),
                 matcher.group("streetName"),
-                matcher.group("postalCode"),
+                Optional.ofNullable(matcher.group("postalCode")),
                 matcher.group("town"));
     }
 }

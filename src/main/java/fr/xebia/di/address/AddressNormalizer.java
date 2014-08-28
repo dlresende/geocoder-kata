@@ -19,11 +19,11 @@ public class AddressNormalizer {
     }
 
     public NormalizedAddress normalize(Address address) {
-        String postalCode = address.postalCode;
-        if (address.postalCode == null) {
-            postalCode = postalCodeResolver.resolve(address.town);
-        }
-
-        return new NormalizedAddress(address.number, address.type, address.streetName, postalCode, address.town.toUpperCase(locale));
+        return new NormalizedAddress(
+                address.number,
+                address.type,
+                address.streetName,
+                address.postalCode.orElse(postalCodeResolver.resolve(address.town)),
+                address.town.toUpperCase(locale));
     }
 }
