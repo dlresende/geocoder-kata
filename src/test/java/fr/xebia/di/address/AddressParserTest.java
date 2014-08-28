@@ -18,11 +18,4 @@ public class AddressParserTest {
                 .postalCode("92700")
                 .town("COLOMBES");
     }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void should_not_parse_not_normalized_address() {
-        AddressParser parser = new AddressParser(FRANCE);
-
-        Address address = parser.parse("156 boulevard Haussmann, Paris");
-    }
 }

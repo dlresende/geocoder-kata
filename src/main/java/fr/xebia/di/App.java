@@ -23,7 +23,7 @@ public class App {
 
     public double getDistance(String firstAddress, String secondAddress) {
         return distanceEngine.evaluate(
-                geolocalizer.getCoordinates(parser.parse(normalizer.normalize(firstAddress))),
-                geolocalizer.getCoordinates(parser.parse(normalizer.normalize(secondAddress))));
+                geolocalizer.getCoordinates(normalizer.normalize(parser.parse(firstAddress))),
+                geolocalizer.getCoordinates(normalizer.normalize(parser.parse(secondAddress))));
     }
 }
