@@ -41,13 +41,24 @@ public class AppTest {
     }
 
     @Test
-    public void should_not_compute_distance_if_an_address_cannot_be_gecoded() {
+    public void should_not_compute_distance_if_first_address_cannot_be_gecoded() {
         given(googleGeocoding.geocode("not a valid address")).willReturn(Optional.empty());
-        given(googleGeocoding.geocode("Utrechtseweg 49, 1213 TL Hilversum, Pays-Bas")).willReturn(Optional.of(new Coordinate(52.2114033, 5.1826765)));
 
         Optional<Double> distance = app.getDistance(
                 "not a valid address",
-                "Utrechtseweg 49, 1213 TL Hilversum, Pays-Bas");
+                null);
+
+        assertThat(distance.isPresent()).isFalse();
+    }
+
+    @Test
+    public void should_not_compute_distance_if_second_address_cannot_be_gecoded() {
+        given(googleGeocoding.geocode("156 Boulevard Haussmann, 75008 Paris, France")).willReturn(Optional.of(new Coordinate(48.8755587, 2.3110176)));
+        given(googleGeocoding.geocode("not a valid address")).willReturn(Optional.empty());
+
+        Optional<Double> distance = app.getDistance(
+                "156 Boulevard Haussmann, 75008 Paris, France",
+                "not a valid address");
 
         assertThat(distance.isPresent()).isFalse();
     }

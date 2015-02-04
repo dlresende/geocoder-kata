@@ -18,9 +18,12 @@ public class App {
 
     public Optional<Double> getDistance(String firstAddress, String secondAddress) {
         Optional<Coordinate> firstCoordinate = googleGeocoding.geocode(firstAddress);
-        Optional<Coordinate> secondCoordinate = googleGeocoding.geocode(secondAddress);
+        if (!firstCoordinate.isPresent()) {
+            return empty();
+        }
         
-        if (!firstCoordinate.isPresent() || !secondCoordinate.isPresent()) {
+        Optional<Coordinate> secondCoordinate = googleGeocoding.geocode(secondAddress);
+        if (!secondCoordinate.isPresent()) {
             return empty();
         }
         

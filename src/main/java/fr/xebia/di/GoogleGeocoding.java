@@ -16,17 +16,17 @@ public class GoogleGeocoding {
     }
 
     public Optional<Coordinate> geocode(String address) {
-        GeocodingResult[] results;
+        return getGeocodingResults(address)
+                .filter(results -> results.length > 0)
+                .map(results -> results[0])
+                .map(result -> new Coordinate(result.geometry.location.lat, result.geometry.location.lng));
+    }
+
+    private Optional<GeocodingResult[]> getGeocodingResults(String address) {
         try {
-            results = GeocodingApi.geocode(context, address).await();
+            return Optional.ofNullable(GeocodingApi.geocode(context, address).await());
         } catch (Exception e) {
             return empty();
         }
-
-        if (results.length == 0) {
-            return empty();
-        }
-        
-        return Optional.of(new Coordinate(results[0].geometry.location.lat, results[0].geometry.location.lng));
     }
 }
