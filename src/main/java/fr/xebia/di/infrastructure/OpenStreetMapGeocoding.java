@@ -1,11 +1,12 @@
-package fr.xebia.di;
+package fr.xebia.di.infrastructure;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import fr.xebia.di.Coordinate;
+import fr.xebia.di.domain.Coordinate;
+import fr.xebia.di.domain.Geocoder;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 import static java.util.Optional.empty;
 
-public class OpenStreetMapGeocoding {
+public class OpenStreetMapGeocoding implements Geocoder {
     private static final String OPEN_STREET_MAP_URL = "http://nominatim.openstreetmap.org/search?format=json&limit=1&q=";
     
     private final OkHttpClient httpClient;
@@ -25,8 +26,9 @@ public class OpenStreetMapGeocoding {
         httpClient = new OkHttpClient();
         gson = new GsonBuilder().create();
     }
-
-    public Optional<Coordinate> search(String address) {
+    
+    @Override
+    public Optional<Coordinate> geocode(String address) {
         String encodedAddress;
         try {
             encodedAddress = URLEncoder.encode(address, "UTF-8");

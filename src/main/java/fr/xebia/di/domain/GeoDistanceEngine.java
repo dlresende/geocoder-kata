@@ -1,4 +1,4 @@
-package fr.xebia.di;
+package fr.xebia.di.domain;
 
 import static java.lang.Math.*;
 

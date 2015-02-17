@@ -1,5 +1,7 @@
-package fr.xebia.di;
+package fr.xebia.di.domain;
 
+import fr.xebia.di.domain.Coordinate;
+import fr.xebia.di.domain.GeoDistanceEngine;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

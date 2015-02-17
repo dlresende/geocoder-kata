@@ -1,4 +1,4 @@
-package fr.xebia.di;
+package fr.xebia.di.domain;
 
 public class Coordinate {
     public final double latitude;
