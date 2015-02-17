@@ -31,4 +31,13 @@ public class App {
                 firstCoordinate.get(),
                 secondCoordinate.get()));
     }
+
+    public static void main(String[] args) {
+        if(args.length != 2) {
+            System.err.println("Please provide first and second address. Example: command <first> <second>");
+            System.exit(1);
+        }
+        Optional<Double> distance = new App().getDistance(args[0], args[1]);
+        System.out.println(distance);
+    }
 }
