@@ -1,6 +1,7 @@
-package fr.xebia.di.geocoding;
+package fr.xebia.di;
 
 import fr.xebia.di.Coordinate;
+import fr.xebia.di.OpenStreetMapGeocoding;
 import org.junit.Test;
 
 import java.util.Optional;

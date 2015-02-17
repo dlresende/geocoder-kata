@@ -1,4 +1,4 @@
-package fr.xebia.di.geocoding;
+package fr.xebia.di;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
