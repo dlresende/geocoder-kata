@@ -26,7 +26,7 @@ public class OpenStreetMapGeocoding {
         gson = new GsonBuilder().create();
     }
 
-    public Optional<Coordinate> geocode(String address) {
+    public Optional<Coordinate> search(String address) {
         String encodedAddress;
         try {
             encodedAddress = URLEncoder.encode(address, "UTF-8");
