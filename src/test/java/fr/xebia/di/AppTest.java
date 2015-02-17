@@ -24,20 +24,26 @@ public class AppTest {
     @Mock
     private GoogleGeocoding googleGeocoding;
 
+    @Mock
+    private GeoDistanceEngine geoDistanceEngine;
+
     @InjectMocks
     private App app;
 
     @Test
     public void should_compute_distance() {
-        given(googleGeocoding.geocode("156 Boulevard Haussmann, 75008 Paris, France")).willReturn(Optional.of(new Coordinate(48.8755587, 2.3110176)));
-        given(googleGeocoding.geocode("Utrechtseweg 49, 1213 TL Hilversum, Pays-Bas")).willReturn(Optional.of(new Coordinate(52.2114033, 5.1826765)));
+        Coordinate xebiaFrance = new Coordinate(48.8755587, 2.3110176);
+        Coordinate xebiaNetherland = new Coordinate(52.2114033, 5.1826765);
+        given(googleGeocoding.geocode("156 Boulevard Haussmann, 75008 Paris, France")).willReturn(Optional.of(xebiaFrance));
+        given(googleGeocoding.geocode("Utrechtseweg 49, 1213 TL Hilversum, Pays-Bas")).willReturn(Optional.of(xebiaNetherland));
+        given(geoDistanceEngine.evaluate(xebiaFrance, xebiaNetherland)).willReturn(423199d);
 
         Optional<Double> distance = app.getDistance(
                 "156 Boulevard Haussmann, 75008 Paris, France",
                 "Utrechtseweg 49, 1213 TL Hilversum, Pays-Bas");
 
         assertThat(distance.isPresent()).isTrue();
-        assertThat(distance.get()).isCloseTo(423_000, offset(1_000d));
+        assertThat(distance.get()).isEqualTo(423199d);
     }
 
     @Test

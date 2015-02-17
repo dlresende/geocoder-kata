@@ -6,7 +6,7 @@ import static java.util.Optional.empty;
 
 public class App {
     private GoogleGeocoding googleGeocoding;
-    private final GeoDistanceEngine distanceEngine;
+    private GeoDistanceEngine distanceEngine;
 
     public App() {
         String apiKey = Optional.ofNullable(System.getProperty("google.apiKey"))
