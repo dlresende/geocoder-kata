@@ -1,4 +1,4 @@
 Code base to explain Dependency Inversion Principle
 ===================================================
 
-Work in progress.
+A screencast will be soon available.
